@@ -1,0 +1,623 @@
+[alex@inspiron ~]$ octave
+Fontconfig error: "/etc/fonts/local.conf", line 3: not well-formed (invalid token)
+GNU Octave, version 5.1.0
+Copyright (C) 2019 John W. Eaton and others.
+This is free software; see the source code for copying conditions.
+There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  For details, type 'warranty'.
+
+Octave was configured for "x86_64-pc-linux-gnu".
+
+Additional information about Octave is available at https://www.octave.org.
+
+Please contribute if you find this software useful.
+For more information, visit https://www.octave.org/get-involved.html
+
+Read https://www.octave.org/bugs.html to learn how to submit bug reports.
+For information about changes from previous versions, type 'news'.
+
+octave:1> a = [-3 1 7 0 4]
+a =
+
+  -3   1   7   0   4
+
+octave:2> a(3,4)
+error: a(3,_): but a has size 1x5
+octave:2> a(3)
+ans =  7
+octave:3> a([3, 4])
+ans =
+
+   7   0
+
+octave:4> ainv([5 4 3 2 1])
+error: 'ainv' undefined near line 1 column 1
+octave:4> ainv([5, 4, 3, 2, 1])
+error: 'ainv' undefined near line 1 column 1
+octave:4> ainv=a([5 4 3 2 1])
+ainv =
+
+   4   0   7   1  -3
+
+octave:5> ind = [2 5 3]
+ind =
+
+   2   5   3
+
+octave:6> a(ind)
+ans =
+
+   1   4   7
+
+octave:7> b = [1 0 -1; 3 1 -2; 3 4 5]
+b =
+
+   1   0  -1
+   3   1  -2
+   3   4   5
+
+octave:8> b = [1 0 -1; 3 1 -2; 3 4 ]
+error: vertical dimensions mismatch (2x3 vs 1x2)
+octave:8> a(8)= -5
+a =
+
+  -3   1   7   0   4   0   0  -5
+
+octave:9> b(4, 5)=3
+b =
+
+   1   0  -1   0   0
+   3   1  -2   0   0
+   3   4   5   0   0
+   0   0   0   0   3
+
+octave:10> numel(a)
+ans =  8
+octave:11> length(a)
+ans =  8
+octave:12> size(a)
+ans =
+
+   1   8
+
+octave:13> numel(b)
+ans =  20
+octave:14> length(b)
+ans =  5
+octave:15> size(b)
+ans =
+
+   4   5
+
+octave:16> a(numel(a))=-5
+a =
+
+  -3   1   7   0   4   0   0  -5
+
+octave:17> a(end)
+ans = -5
+octave:18> b(end, 4)=0
+b =
+
+   1   0  -1   0   0
+   3   1  -2   0   0
+   3   4   5   0   0
+   0   0   0   0   3
+
+octave:19> b(end, 4)
+ans = 0
+octave:20> a([6 7 8])
+ans =
+
+   0   0  -5
+
+octave:21> a([6 7 8])=[]
+a =
+
+  -3   1   7   0   4
+
+octave:22> a([8 200])=[]
+error: A(I) = []: index out of bounds: value 200 out of bound 5
+octave:22> b(4:end, 4:end)=[]
+error: a null assignment can only have one non-colon index
+octave:22> b(4:end, 4:end)=[ ]
+error: a null assignment can only have one non-colon index
+octave:22> b
+b =
+
+   1   0  -1   0   0
+   3   1  -2   0   0
+   3   4   5   0   0
+   0   0   0   0   3
+
+octave:23> b(4:end, 1:end)=[ ]
+error: a null assignment can only have one non-colon index
+octave:23> b(1:end, ~:)=[ ]
+parse error:
+
+  syntax error
+
+>>> b(1:end, ~:)=[ ]
+              ^
+
+octave:23> b(1:end, ~)=[ ]
+parse error:
+
+  invalid use of empty argument (~) in index expression
+
+>>> b(1:end, ~)=[ ]
+              ^
+
+octave:23> b(: :)=[ ]
+parse error:
+
+  syntax error
+
+>>> b(: :)=[ ]
+        ^
+
+octave:23> b(1:end :)=[ ]
+parse error:
+
+  syntax error
+
+>>> b(1:end :)=[ ]
+             ^
+
+octave:23> b(1:end, :)=[ ]
+b = [](0x5)
+octave:24> b
+b = [](0x5)
+octave:25> b = [1 0 -1; 3 1 -2; 3 4 5]
+b =
+
+   1   0  -1
+   3   1  -2
+   3   4   5
+
+octave:26> b(numel(b))
+ans =  5
+octave:27> b(3)
+ans =  3
+octave:28> b(1:end)
+ans =
+
+   1   3   3   0   1   4  -1  -2   5
+
+octave:29> b(:)
+ans =
+
+   1
+   3
+   3
+   0
+   1
+   4
+  -1
+  -2
+   5
+
+octave:30> n =1:5
+n =
+
+   1   2   3   4   5
+
+octave:31> n=[1, 1:5]
+n =
+
+   1   1   2   3   4   5
+
+octave:32> n=(1, 1:5)
+parse error:
+
+  syntax error
+
+>>> n=(1, 1:5)
+        ^
+
+octave:32> n=(1 1:5)
+parse error:
+
+  syntax error
+
+>>> n=(1 1:5)
+         ^
+
+octave:32> n =1:5
+n =
+
+   1   2   3   4   5
+
+octave:33> m=1:2:5
+m =
+
+   1   3   5
+
+octave:34> m=1:2:6
+m =
+
+   1   3   5
+
+octave:35> c = 5:1
+c = [](1x0)
+octave:36> c = 5:-1:1
+c =
+
+   5   4   3   2   1
+
+octave:37> c = 5:-10:1
+c =  5
+octave:38> [a c]
+ans =
+
+  -3   1   7   0   4   5
+
+octave:39> horzcat(a,c)
+ans =
+
+  -3   1   7   0   4   5
+
+octave:40> vartcat(a,c)
+error: 'vartcat' undefined near line 1 column 1
+octave:40> [b;c]
+error: vertical dimensions mismatch (3x3 vs 1x1)
+octave:40> vertcat(a,c)
+error: vertcat: cat: dimension mismatch
+octave:40> sum(a)
+ans =  9
+octave:41> sum(b)
+ans =
+
+   7   5   2
+
+octave:42> b
+b =
+
+   1   0  -1
+   3   1  -2
+   3   4   5
+
+octave:43> sum(sum(b))
+ans =  14
+octave:44> sum(b[1:end])
+parse error:
+
+  syntax error
+
+>>> sum(b[1:end])
+         ^
+
+octave:44> sum(b(1:end))
+ans =  14
+octave:45> prod(a)
+ans = -0
+octave:46> prod(b)
+ans =
+
+    9    0   10
+
+octave:47> 3/prod(a)
+warning: division by zero
+ans = -Inf
+octave:48> Inf+2
+ans =  Inf
+octave:49> Inf*Inf
+ans =  Inf
+octave:50> NaN*Inf
+ans =  NaN
+octave:51> Inf/Inf
+ans =  NaN
+octave:52> NaN+2
+ans =  NaN
+octave:53> (Nan + Inf)*Inf
+error: 'Nan' undefined near line 1 column 2
+octave:53> Sqrt(Nan)
+error: 'Nan' undefined near line 1 column 6
+octave:53> sqrt(NaN)
+ans =  NaN
+octave:54> (NaN + Inf)*Inf
+ans =  NaN
+octave:55> NaN-NaN+5
+ans =  NaN
+octave:56> 1/0
+warning: division by zero
+ans =  Inf
+octave:57> Inf*-
+parse error:
+
+  syntax error
+
+>>> Inf*-
+        ^
+
+octave:57> Inf*-0
+ans =  NaN
+octave:58> lol
+error: 'lol' undefined near line 1 column 1
+octave:58> 8=э
+parse error:
+
+  invalid constant left hand side of assignment
+
+>>> 8=э
+     ^
+
+octave:58> ones(3)
+ans =
+
+   1   1   1
+   1   1   1
+   1   1   1
+
+octave:59> zeros(2,4)
+ans =
+
+   0   0   0   0
+   0   0   0   0
+
+octave:60> hui(2,5)
+error: 'hui' undefined near line 1 column 1
+octave:60> 8===3 
+parse error:
+
+  syntax error
+
+>>> 8===3 
+       ^
+
+octave:60> eye(4)
+ans =
+
+Diagonal Matrix
+
+   1   0   0   0
+   0   1   0   0
+   0   0   1   0
+   0   0   0   1
+
+octave:61> eye(3)*[1;2;3]
+ans =
+
+   1
+   2
+   3
+
+octave:62> diag[1;22;;3
+parse error:
+
+  syntax error
+
+>>> diag[1;22;;3
+        ^
+
+octave:62> diag[1;2;3]
+parse error:
+
+  syntax error
+
+>>> diag[1;2;3]
+        ^
+
+octave:62> diag([1;2;3])
+ans =
+
+Diagonal Matrix
+
+   1   0   0
+   0   2   0
+   0   0   3
+
+octave:63> diag(1 2 3)
+parse error:
+
+  syntax error
+
+>>> diag(1 2 3)
+           ^
+
+octave:63> [1;2;3]*eye(3)
+error: operator *: nonconformant arguments (op1 is 3x1, op2 is 3x3)
+octave:63> [1 2 3]*eye(3)
+ans =
+
+   1   2   3
+
+octave:64> dfghjkl;/
+parse error:
+
+  syntax error
+
+>>> dfghjkl;/
+            ^
+
+octave:64> a + 2
+ans =
+
+  -1   3   9   2   6
+
+octave:65> a
+a =
+
+  -3   1   7   0   4
+
+octave:66> a/8
+ans =
+
+  -0.37500   0.12500   0.87500   0.00000   0.50000
+
+octave:67> a/Inf
+ans =
+
+  -0   0   0   0   0
+
+octave:68> d
+error: 'd' undefined near line 1 column 1
+octave:68> d = diag(1 2 3)
+parse error:
+
+  syntax error
+
+>>> d = diag(1 2 3)
+               ^
+
+octave:68> d = diag(1; 2; 3)
+parse error:
+
+  syntax error
+
+>>> d = diag(1; 2; 3)
+              ^
+
+octave:68> d = diag([1; 2; 3])
+d =
+
+Diagonal Matrix
+
+   1   0   0
+   0   2   0
+   0   0   3
+
+octave:69> b*d
+ans =
+
+    1    0   -3
+    3    2   -6
+    3    8   15
+
+octave:70> b*a
+error: operator *: nonconformant arguments (op1 is 3x3, op2 is 1x5)
+octave:70> b.*d
+ans =
+
+    1    0   -0
+    0    2   -0
+    0    0   15
+
+octave:71> b
+b =
+
+   1   0  -1
+   3   1  -2
+   3   4   5
+
+octave:72> d
+d =
+
+Diagonal Matrix
+
+   1   0   0
+   0   2   0
+   0   0   3
+
+octave:73> a.+d
+error: operator +: nonconformant arguments (op1 is 1x5, op2 is 3x3)
+octave:73> d+b
+ans =
+
+   2   0  -1
+   3   3  -2
+   3   4   8
+
+octave:74> d.+d
+ans =
+
+Diagonal Matrix
+
+   2   0   0
+   0   4   0
+   0   0   6
+
+octave:75> b/d
+ans =
+
+   1.00000   0.00000  -0.33333
+   3.00000   0.50000  -0.66667
+   3.00000   2.00000   1.66667
+
+octave:76> b\d
+ans =
+
+   3.25000  -2.00000   0.75000
+  -5.25000   4.00000  -0.75000
+   2.25000  -2.00000   0.75000
+
+octave:77> d/b
+ans =
+
+    3.25000   -1.00000    0.25000
+  -10.50000    4.00000   -0.50000
+    6.75000   -3.00000    0.75000
+
+octave:78> b
+b =
+
+   1   0  -1
+   3   1  -2
+   3   4   5
+
+octave:79> b^2
+ans =
+
+   -2   -4   -6
+    0   -7  -15
+   30   24   14
+
+octave:80> b.^2
+ans =
+
+    1    0    1
+    9    1    4
+    9   16   25
+
+octave:81> b^39054529045
+ans =
+
+   NaN - NaNi   NaN - NaNi   NaN - NaNi
+   NaN - NaNi   NaN - NaNi   NaN - NaNi
+   NaN - NaNi   Inf - NaNi   Inf - NaNi
+
+octave:82> b^777777777777777777777777777777777777777777777777777777777777777777
+ans =
+
+   NaN - NaNi   NaN - NaNi   NaN - NaNi
+   NaN - NaNi   NaN - NaNi   NaN - NaNi
+   NaN - NaNi  -Inf - NaNi  -Inf - NaNi
+
+octave:83> b.^2
+ans =
+
+    1    0    1
+    9    1    4
+    9   16   25
+
+octave:84> b
+b =
+
+   1   0  -1
+   3   1  -2
+   3   4   5
+
+octave:85> det(b)
+ans =  4.0000
+octave:86> det(d)
+ans =  6
+octave:87> inv(b)
+ans =
+
+   3.25000  -1.00000   0.25000
+  -5.25000   2.00000  -0.25000
+   2.25000  -1.00000   0.25000
+
+octave:88> b*inv(b)
+ans =
+
+   1.00000   0.00000   0.00000
+   0.00000   1.00000   0.00000
+   0.00000  -0.00000   1.00000
+
+octave:89> b^-1
+ans =
+
+   3.25000  -1.00000   0.25000
+  -5.25000   2.00000  -0.25000
+   2.25000  -1.00000   0.25000
